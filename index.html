@@ -1,50 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graduation Wish</title>
 
-<title>Graduation Celebration</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/animations.css">
+body {
+    background: #0f172a;
+    color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
 
+/* ===== HERO ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at top, #ff4d6d, #0f172a);
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    animation: fadeIn 2s ease;
+}
+
+.hero p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.btn {
+    margin-top: 25px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4d6d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* ===== SECTION ===== */
+section {
+    padding: 70px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* ===== TYPEWRITER ===== */
+.letter {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid #ff4d6d;
+    min-height: 200px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* ===== PROPOSAL ===== */
+.proposal {
+    text-align: center;
+    background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+    border-radius: 20px;
+    padding: 50px 20px;
+}
+
+.proposal h2 {
+    font-size: 2rem;
+}
+
+.whatsapp {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #25D366;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ===== CONFETTI ===== */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    animation: fall linear forwards;
+    z-index: 999;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="floating-icons"></div>
+<!-- ===== HERO ===== -->
+<div class="hero">
+    <h1>🎓 Congratulations My Future Wife</h1>
+    <p>Your success is my pride ❤️</p>
 
-<section class="hero">
+    <button class="btn" onclick="goToLetter()">Open My Wish 💌</button>
+</div>
 
-    <h1 class="title">
-        🎓 Congratulations Graduate
-    </h1>
-
-    <p id="typing"></p>
-
-    <button id="startBtn">
-        Begin Journey ✨
-    </button>
-
+<!-- ===== TYPEWRITER LETTER ===== -->
+<section id="letterSection">
+    <h2>💌 My Letter For You</h2>
+    <div class="letter" id="letter"></div>
 </section>
 
-<section id="story" class="hidden">
+<!-- ===== PROPOSAL ===== -->
+<section class="proposal">
+    <h2>💍 My Future With You</h2>
+    <p>
+        Today you graduated... tomorrow I want to walk every step of life with you ❤️
+    </p>
 
-    <div class="card">
-
-        <h2>Your Amazing Journey</h2>
-
-        <p>
-            Every challenge made you stronger.
-        </p>
-
-    </div>
-
+    <a class="whatsapp"
+       href="https://wa.me/?text=I%20just%20received%20the%20most%20beautiful%20graduation%20wish%20❤️🎓"
+       target="_blank">
+       Share on WhatsApp 📲
+    </a>
 </section>
 
-<script src="js/main.js"></script>
+<script>
+
+/* ===== SCROLL ===== */
+function goToLetter(){
+    document.getElementById("letterSection").scrollIntoView({behavior:"smooth"});
+    startTyping();
+    startConfetti();
+}
+
+/* ===== TYPEWRITER ===== */
+const text = `My dearest,
+Today you are not just a graduate...
+you are a dream that turned into reality.
+
+I watched you grow with patience, strength, and determination.
+Every late night, every struggle, every effort...
+
+It all led you to this moment — your graduation day 🎓
+
+I am so proud of you, not just as a graduate,
+but as the most beautiful part of my future.
+
+One day, I don’t just want to celebrate your success...
+I want to celebrate life with you as my wife ❤️
+
+Forever proud of you,
+Your future husband 💖`;
+
+let i = 0;
+let typingStarted = false;
+
+function startTyping(){
+    if(typingStarted) return;
+    typingStarted = true;
+
+    const target = document.getElementById("letter");
+
+    function type(){
+        if(i < text.length){
+            target.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 35);
+        }
+    }
+    type();
+}
+
+/* ===== CONFETTI EXPLOSION ===== */
+function startConfetti(){
+    for(let i=0;i<120;i++){
+        let c = document.createElement("div");
+        c.classList.add("confetti");
+        document.body.appendChild(c);
+
+        c.style.left = Math.random()*100 + "vw";
+        c.style.background = ["#ff4d6d","#ffd166","#06d6a0","#4cc9f0","#ffffff"][Math.floor(Math.random()*5)];
+        c.style.animationDuration = (Math.random()*3 + 2) + "s";
+
+        setTimeout(()=>c.remove(),5000);
+    }
+}
+
+</script>
 
 </body>
 </html>
