@@ -1,0 +1,58 @@
+body{
+    margin:0;
+    background:#070b18;
+    color:white;
+    font-family:Poppins,sans-serif;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.title{
+    font-size:4rem;
+    text-shadow:
+    0 0 15px white,
+    0 0 30px cyan;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.hidden{
+    display:none;
+}
+
+
+
+.floating{
+    position:absolute;
+    font-size:30px;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(110vh);
+opacity:0;
+}
+
+100%{
+transform:translateY(-100vh);
+opacity:1;
+}
+
+}
+
